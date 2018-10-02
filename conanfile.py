@@ -3,16 +3,18 @@ from conans import tools
 
 class FmtConan(ConanFile):
     name = "fmt"
-    version = "4.0.0"
+    version = "5.2.1"
     description = "A modern formatting library."
     url = "https://github.com/fmtlib/fmt"
     license = "MIT"
-    exports_sources = "fmt/*"
-    no_copy_source = True
+    exports_sources = "include/fmt/*", "src/*", "LICENSE.txt"
+
+    def build(self):
+        pass
 
     def package(self):
-        self.copy("*.h", src="fmt", dst="include/fmt")
-        self.copy("*.cc", src="fmt", dst="include/fmt")
+        self.copy("*.h", src="include/fmt", dst="include/fmt")
+        self.copy("*.cc", src="src", dst="include/fmt")
 
     def package_info(self):
         self.info.header_only()
